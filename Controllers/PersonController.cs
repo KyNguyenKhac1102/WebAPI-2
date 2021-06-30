@@ -40,12 +40,14 @@ namespace WebAPI_2.Controllers
             return StatusCode(200);
         }
 
-        [HttpPut("")]
+        // PUT: api/Person
+        [HttpPut]
         public List<Person> Person(Guid id, Person person){
             _personService.Update(id, person);
             return _personService.getAll();
         }
 
+        //DELETE: api/Person/{name}
         [HttpDelete("{name}")]
         public StatusCodeResult Person(string name){
            var isDeleted = _personService.Delete(name);
@@ -55,6 +57,7 @@ namespace WebAPI_2.Controllers
             return StatusCode(404);
         }
 
+        //GET: api/Person/{sortBy}
         [HttpGet("{sortBy}")]
         public IActionResult Filter(string sortBy, string value){
             
